@@ -10,11 +10,11 @@ public class Main {
         Set<Path> paths = new HashSet<>();
         paths.add(new Path("A", "B", 1));
         paths.add(new Path("B", "C", 5));
-        paths.add(new Path("A","C",4));
-        paths.add(new Path("B","D",2));
-        paths.add(new Path("A","D",3));
-        paths.add(new Path("D","C",6));
+        paths.add(new Path("A", "C", 4));
+        paths.add(new Path("B", "D", 2));
+        paths.add(new Path("A", "D", 3));
+        paths.add(new Path("D", "C", 6));
 
-        new GreedySalesman().visitAllCities(paths,"A");
+        System.out.print(new GreedySalesman(paths, "A").travel());
     }
 }

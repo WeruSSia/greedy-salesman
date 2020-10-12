@@ -1,6 +1,6 @@
 package greedy_salesman;
 
-public class Path implements Comparable<Path>{
+public class Path implements Comparable<Path> {
 
     private String cityA;
     private String cityB;
@@ -12,14 +12,6 @@ public class Path implements Comparable<Path>{
         this.cost = cost;
     }
 
-    public String getCityA() {
-        return cityA;
-    }
-
-    public String getCityB() {
-        return cityB;
-    }
-
     public Integer getCost() {
         return cost;
     }
@@ -28,10 +20,10 @@ public class Path implements Comparable<Path>{
         return city.equals(cityA) || city.equals(cityB);
     }
 
-    String getDestinationCity(String sourceCity){
-        if(sourceCity.equals(cityA)){
+    String getDestinationCity(String sourceCity) {
+        if (sourceCity.equals(cityA)) {
             return cityB;
-        }else if(sourceCity.equals(cityB)){
+        } else if (sourceCity.equals(cityB)) {
             return cityA;
         }
         return null;
@@ -39,6 +31,6 @@ public class Path implements Comparable<Path>{
 
     @Override
     public int compareTo(Path path) {
-        return Integer.compare(cost,path.getCost());
+        return Integer.compare(cost, path.getCost());
     }
 }
