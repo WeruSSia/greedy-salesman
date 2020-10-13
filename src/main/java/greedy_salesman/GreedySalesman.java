@@ -1,6 +1,9 @@
 package greedy_salesman;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class GreedySalesman {
 
@@ -45,13 +48,9 @@ public class GreedySalesman {
     }
 
     private TreeSet<Path> getPossiblePaths(String city) {
-        TreeSet<Path> possiblePaths = new TreeSet<>();
-        for (Path path : paths) {
-            if (path.contains(city) && !visitedCities.contains(path.getDestinationCity(city))) {
-                possiblePaths.add(path);
-            }
-        }
-        return possiblePaths;
+        return paths.stream().filter(path ->
+                path.contains(city) && !visitedCities.contains(path.getDestinationCity(city))
+        ).collect(Collectors.toCollection(TreeSet::new));
     }
 
 }
