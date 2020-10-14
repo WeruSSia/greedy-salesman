@@ -52,8 +52,8 @@ public class Main {
         cities.forEach(city -> validatorMap.put(city, 0));
 
         paths.forEach(path -> {
-                    validatorMap.put(path.getCityA(), validatorMap.get(path.getCityA() + 1));
-                    validatorMap.put(path.getCityB(), validatorMap.get(path.getCityB() + 1));
+                    validatorMap.put(path.getCityA(), validatorMap.get(path.getCityA()) + 1);
+                    validatorMap.put(path.getCityB(), validatorMap.get(path.getCityB()) + 1);
                 }
         );
 
