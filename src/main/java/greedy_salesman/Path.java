@@ -16,6 +16,14 @@ public class Path implements Comparable<Path> {
         return cost;
     }
 
+    public String getCityA() {
+        return cityA;
+    }
+
+    public String getCityB() {
+        return cityB;
+    }
+
     Boolean contains(String city) {
         return city.equals(cityA) || city.equals(cityB);
     }

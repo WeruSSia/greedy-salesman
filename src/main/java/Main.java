@@ -5,9 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
 
@@ -16,8 +14,11 @@ public class Main {
 
         String originCity = file.readLine();
         Set<Path> paths = getPaths(file);
-
-        System.out.print(new GreedySalesman(paths, originCity).travel());
+        if (isGraphValid(paths)) {
+            System.out.print(new GreedySalesman(paths, originCity).travel());
+        } else {
+            System.out.println("The graph is not valid!");
+        }
     }
 
     private static BufferedReader getInputFile() throws FileNotFoundException {
@@ -36,5 +37,32 @@ public class Main {
             line = file.readLine();
         }
         return paths;
+    }
+
+    private static Boolean isGraphValid(Set<Path> paths) {
+        Map<String, Integer> validatorMap = new HashMap<>();
+
+        Set<String> cities = new HashSet<>();
+        paths.forEach(path -> {
+                    cities.add(path.getCityA());
+                    cities.add(path.getCityB());
+                }
+        );
+
+        cities.forEach(city -> validatorMap.put(city, 0));
+
+        paths.forEach(path -> {
+                    validatorMap.put(path.getCityA(), validatorMap.get(path.getCityA() + 1));
+                    validatorMap.put(path.getCityB(), validatorMap.get(path.getCityB() + 1));
+                }
+        );
+
+        for (Integer value : validatorMap.values()) {
+            if (value != cities.size() - 1) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
