@@ -29,7 +29,7 @@ public class Main {
     }
 
     private static Set<Path> getPaths(BufferedReader file) throws IOException {
-        Set<Path> paths = new HashSet<>();
+        Set<Path> paths = new LinkedHashSet<>();
         String line = file.readLine();
         while (line != null) {
             String[] path = line.split(",");
